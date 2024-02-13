@@ -9,32 +9,28 @@
       )"
       :key="customerId"
     >
-      <li @click="router.push(`/${retailUnitCode}/${period}/${customerId}`)">
-        {{ customerId }} Balance:
-        {{ getBUBalances(businessUnitCode)[customerId] }}
-      </li>
+      <button
+        @click="router.push(`/${retailUnitCode}/${period}/${customerId}`)"
+      >
+        <li>
+          {{ customerId }} Balance:
+          {{ getBUBalances(businessUnitCode)[customerId] }}
+        </li>
+      </button>
     </ul>
   </div>
 </template>
 
 <script>
 import { useMarketStore } from "../store";
-import { onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
 export default {
-  name: "Filter3View",
+  name: "Filter2View",
 
   setup() {
     const marketStore = useMarketStore();
 
-    onMounted(async () => {
-      try {
-        await marketStore.fetchData();
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    });
     const route = useRoute();
 
     const { retailUnitCode, period, businessUnitCode } = route.params;

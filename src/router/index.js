@@ -5,20 +5,20 @@ const routes = [
     component: () => import("../views/HomeView.vue"),
   },
   {
-    path: "/:retailunitCode/:period",
+    path: "/:retailUnitCode/:period",
     name: "RetailUnitPeriod",
     component: () => import("../views/Filter1View.vue"),
   },
   {
-    path: "/:retailunitCode/:period/:businessUnitCode",
+    path: "/:retailUnitCode/:period/:businessUnitCode",
     name: "RetailUnitPeriodBusinessUnit",
     component: () => import("../views/Filter2View.vue"),
   },
- {
-   path: "/:retailUnitCode/:period/:customerId",
-   name: "RetailUnitPeriodCustomer",
-   component: () => import("../views/Filter3View.vue"),
- },
+  {
+    path: "/:retailUnitCode/:period/:customerId([a-zA-Z]{2}\\.customer-\\d{2})",
+    name: "RetailUnitPeriodCustomer",
+    component: () => import("../views/Filter3View.vue"),
+  },
 ];
 
 export default routes;

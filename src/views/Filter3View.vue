@@ -1,15 +1,17 @@
 <template>
   <button @click="router.push(`/`)">Home</button>
   <div class="hello">
+    <h1>Customer</h1>
+    <h3>Total {{ customerId }} balance: </h3>
+    <p>
+      {{ balancePerCustomer }}
+    </p>
+     <h3>Total {{ customerId }} balance events: </h3>
     <ul v-for="event in eventsPerCustomer" :key="event.id">
       <li>
         {{ event }}
       </li>
     </ul>
-    <p>
-      Balance:
-      {{ balancePerCustomer }}
-    </p>
   </div>
 </template>
 
@@ -26,6 +28,7 @@ export default {
     const route = useRoute();
 
     const { retailUnitCode, businessUnitCode, customerId } = route.params;
+
     const eventsPerCustomer = marketStore.getCustomerBalanceEventsForMarket(
       customerId,
       retailUnitCode

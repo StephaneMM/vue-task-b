@@ -11,9 +11,9 @@
         </li>
       </ul>
     </div>
-    <h3>Total business Unit for {{ retailunitCode }}</h3>
+    <h3>Total business Unit for {{ retailUnitCode }}</h3>
     <div class="hello">
-      <ul v-for="bu in marketStore.businessUnitsList(retailunitCode)" :key="bu">
+      <ul v-for="bu in marketStore.businessUnitsList(retailUnitCode)" :key="bu">
         <li>
           {{ bu }} Balance:
           {{ getBusinessUnitsBalance(bu) }}
@@ -25,7 +25,6 @@
 
 <script>
 import { useMarketStore } from "../store";
-import { onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
 export default {
@@ -34,19 +33,11 @@ export default {
   setup() {
     const marketStore = useMarketStore();
 
-    onMounted(async () => {
-      try {
-        await marketStore.fetchData();
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    });
 
     const router = useRouter();
     const route = useRoute();
 
-    const { retailunitCode } = route.params;
-    console.log(route.params);
+    const { retailUnitCode } = route.params;
 
     const getBusinessUnitsBalance = (BU) => {
       return marketStore.getBusinessUnitsBalance(BU);
@@ -54,7 +45,7 @@ export default {
 
     return {
       router,
-      retailunitCode,
+      retailUnitCode,
       getBusinessUnitsBalance,
       marketStore,
     };

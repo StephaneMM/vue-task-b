@@ -61,6 +61,8 @@ export const useMarketStore = defineStore("market", {
         return acc;
       }, 0);
 
+      console.log({ events: filteredCustomerEvents, balance });
+
       return { events: filteredCustomerEvents, balance };
     },
 
